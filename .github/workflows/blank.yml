@@ -17,6 +17,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Debug step to confirm directory structure
+      - name: List directory contents
+        run: ls -alh
+
+      # If package.json is inside a subfolder, use cd to navigate to that directory
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -24,10 +29,12 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd path/to/directory  # Replace with the correct path to your package.json
           npm install
 
       - name: Run build
         run: |
+          cd path/to/directory  # Same here, ensure you're in the right directory
           npm run build
 
   test:
@@ -45,10 +52,12 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd path/to/directory  # Ensure you are in the correct directory
           npm install
 
       - name: Run tests
         run: |
+          cd path/to/directory  # Ensure you're still in the correct directory
           npm test
 
   docker:
